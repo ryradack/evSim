@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			p {
+				margin: 0px;
+			}
+		</style>
+		<title>EV Simulation Home Page</title>
+		<link rel="icon" href="carClipart.png" type="image/jpg" sizes="16x16">
+		<style>
+        	html {
+        	    background-image: url("carClipart.png"); 
+        	    background-size: cover;       	    
+        	}
+    	</style>
+	</head>
+	<body>
+		<h1>Electric Vehicle Grid Impact Simulator</h1>
+		<form action="/EV/evMain.php" method="POST">
+			<label>Heat: </label>
+			<select id="season" name="season">
+				<option value="average">Average (75&#8457;)</option>
+				<option value="summer">Hot (95&#8457)</option>
+				<option value="winter">Cold (20&#8457)</option>
+			</select>
+            <br>
+            <br>
+			<label>Number of Households: </label><input type="number" name="population" min="0" id="population"><br>
+			<label>Percentage of Households with EV: </label><input type="number" min="0" max="100" name="population%" id="population%" step=".1"><label>%</label>
+			<br><br>
+            <!--<input type="checkbox" id="smooth" name="smooth">Smooth Graph<br>-->
+			<button type="submit" id="form-button">Run Simulation</button>
+		</form>
+	</body>
+	<br>	
+</html>

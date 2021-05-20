@@ -5,6 +5,17 @@
 			p {
 				margin: 0px;
 			}
+			table, td, th {
+				border: 1px solid black;
+				margin: 5px; 
+				padding: 10px; 
+				font-weight: bold;
+				text-align: left;
+			}
+
+			table {
+				border-collapse: collapse;
+			}
 		</style>
 		<title>EV Simulation Home Page</title>
 		<link rel="icon" href="carClipart.png" type="image/jpg" sizes="16x16">
@@ -14,10 +25,15 @@
         	    background-size: cover;       	    
         	}
     	</style>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script src="evMain.js"></script>
+		<script src="evAnalyze.js"></script>
+		<script src="vehicle.js"></script>
+		<script src="owner.js"></script>
 	</head>
 	<body>
 		<h1>Electric Vehicle Grid Impact Simulator</h1>
-		<form action="/EV/evMain.php" method="POST">
+		<form name="simForm" id="simForm" onsubmit="return false" method="post">
 			<label>Heat: </label>
 			<select id="season" name="season">
 				<option value="average">Average (75&#8457;)</option>
@@ -26,12 +42,23 @@
 			</select>
             <br>
             <br>
-			<label>Number of Households: </label><input type="number" name="population" min="0" id="population"><br>
-			<label>Percentage of Households with EV: </label><input type="number" min="0" max="100" name="population%" id="population%" step=".1"><label>%</label>
+			<label>Number of Households: </label><input type="number" name="population" min="0" id="population" value="5000"><br>
+			<label>Percentage of Households with EV: </label><input type="number" min="0" max="100" name="population%" id="population%" step=".1" value="5"><label>%</label>
 			<br><br>
-            <!--<input type="checkbox" id="smooth" name="smooth">Smooth Graph<br>-->
-			<button type="submit" id="form-button">Run Simulation</button>
+			<button type="submit" onclick="checkForm()">Run Simulation</button>
 		</form>
+		<br>
+		<div id="results" style="display: none;">
+			<table style="background: rgba(255, 255, 255, .7);">
+				<tr><th id="reviewResult"></th></tr>
+				<tr><th id="evMultResult"></th></tr>
+				<tr><th id="evSingleResult"></th></tr>
+			</table>
+			<br><button onclick="clearResults()">Clear Results</button>
+			<br><br>
+			<div id="curve_chart_multiple" style="width: 900px; height: 500px"></div><br>
+			<div id="curve_chart_single" style="width: 900px; height: 500px"></div>
+		</div>
 	</body>
 	<br>	
 </html>
